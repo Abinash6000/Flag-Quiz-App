@@ -47,15 +47,16 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         btnSubmit = findViewById(R.id.btn_submit)
 
-        tvOptionOne?.setOnClickListener(this)
-        tvOptionTwo?.setOnClickListener(this)
-        tvOptionThree?.setOnClickListener(this)
-        tvOptionFour?.setOnClickListener(this)
-        btnSubmit?.setOnClickListener(this)
+
 
         mQuestionsList = Constants.getQuestions()
 
         setQuestion()
+
+        tvOptionOne?.setOnClickListener(this)
+        tvOptionTwo?.setOnClickListener(this)
+        tvOptionThree?.setOnClickListener(this)
+        tvOptionFour?.setOnClickListener(this)
 
     }
 
@@ -64,7 +65,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         val question: Question = mQuestionsList!![mCurrentPosition - 1]
         ivImage?.setImageResource(question.image)
         progressBar?.progress = mCurrentPosition
-        tvProgressBar?.text = "${mCurrentPosition}/${progressBar?.max}"
+        tvProgressBar?.text = "$mCurrentPosition" + "/" + progressBar?.max
         tvQuestion?.text = question.question
         tvOptionOne?.text = question.optionOne
         tvOptionTwo?.text = question.optionTwo
@@ -107,7 +108,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         defaultOptionsView()
         mSelectedOptionPosition = selectedOptionNum
 
-        tv.setTextColor(Color.parseColor("363A43"))
+        tv.setTextColor(Color.parseColor("#363A43"))
         tv.setTypeface(tv.typeface, Typeface.BOLD)
         tv.background = ContextCompat.getDrawable(
             this,
@@ -137,9 +138,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     selectedOptionView(it, 4)
                 }
             }
-            R.id.btn_submit -> {
-                // TODO "implement btn_submit"
-            }
+
         }
     }
 }
